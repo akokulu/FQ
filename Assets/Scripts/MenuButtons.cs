@@ -123,13 +123,13 @@ public class MenuButtons : MonoBehaviour
         {
             highscore = HighScoreManager._instance.GetHighScore();
 
-            GUILayout.Space(Screen.height / 2);
+            GUILayout.Space(Screen.height / 3);
 
             GUILayout.BeginHorizontal();
-            GUILayout.Space(25);
-            GUILayout.Box("Name", GUILayout.Width(Screen.width / 5));
-            GUILayout.Box("Kill Count", GUILayout.Width(Screen.width / 5));
-            GUILayout.Box("Lamps Collected", GUILayout.Width(Screen.width / 5));
+            GUILayout.Space(Screen.width / 4);
+            GUILayout.Label("Name", GUILayout.Width(Screen.width / 8));
+            GUILayout.Label("Kill Count", GUILayout.Width(Screen.width / 8));
+            GUILayout.Label("Lamps Collected", GUILayout.Width(Screen.width / 8));
             GUILayout.EndHorizontal();
 
             GUILayout.Space(25);
@@ -137,10 +137,10 @@ public class MenuButtons : MonoBehaviour
             foreach (Scores _score in highscore)
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Space(25);
-                GUILayout.Box(_score.name, GUILayout.Width(Screen.width / 5));
-                GUILayout.Box("" + _score.killCount, GUILayout.Width(Screen.width / 5));
-                GUILayout.Box("" + _score.lampsCollected, GUILayout.Width(Screen.width / 5));
+                GUILayout.Space(Screen.width / 4);
+                GUILayout.Label(_score.name, GUILayout.Width(Screen.width / 8));
+                GUILayout.Label("" + _score.killCount, GUILayout.Width(Screen.width / 8));
+                GUILayout.Label("" + _score.lampsCollected, GUILayout.Width(Screen.width / 8));
                 GUILayout.EndHorizontal();
             }
         }
