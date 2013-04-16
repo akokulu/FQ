@@ -8,18 +8,26 @@ public class MenuButtons : MonoBehaviour
     public enum GameState { MainMenu, Name, Score, Pause, Play };
     public static GameState gamestate = GameState.MainMenu;
 
-    public GUIText Title;
-    public GUIText HighScore;
-    public GUIText Quit;
+    public GUITexture Title;
 
-    public GUIText Play;
+    public GUITexture HighScore;
+    public GUITexture Play;
+    public GUITexture Return;
+
+    public GUITexture Quit;
+    
     public GUIText Resume;
-    public GUIText Return;
-	
+    
 	public GUIText Name;
 	public GUIText Command;
 	
 	public GUITexture background;
+
+    public Texture TextureTitle;
+    public Texture TextureHighScores;
+
+    public Texture TexturePlayGame;
+    public Texture TextureReturn;
 	
     List<Scores> highscore;
 
@@ -47,8 +55,12 @@ public class MenuButtons : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Return))
+        {
+            PlayerStats.playerName = Name.text; // Set player name
+
             if (gamestate == GameState.Play)
                 ShowPause();
+        }
 		
 		//if(gamestate == GameState.MainMenu)
 			//Name.text = "Name:" + PlayerProps.name;
@@ -58,14 +70,16 @@ public class MenuButtons : MonoBehaviour
     void ShowMenu()
     {
         gamestate = GameState.MainMenu;
-        Title.text = "Fetch Quest";
+        Title.texture = TextureTitle;
         Return.enabled = false;
 
         Play.enabled = true;
         Title.enabled = true;
         HighScore.enabled = true;
         Quit.enabled = true;
+
 		PlayerStats.playerName = "";
+        Name.text = "";
 		Command.enabled = false;
     }
 
@@ -73,7 +87,7 @@ public class MenuButtons : MonoBehaviour
     {
         gamestate = GameState.Score;
         Title.enabled = true;
-        Title.text = "High Scores";
+        Title.texture = TextureHighScores;
         Return.enabled = true;
 
         Play.enabled = false;

@@ -15,6 +15,7 @@ public class DungeonStarter : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(delay);
 		Vector3 temp = transform.position;
+        temp.y = 2f;
 		temp.x = player.transform.position.x;
 		temp.z = player.transform.position.z;
 		transform.position = temp;
