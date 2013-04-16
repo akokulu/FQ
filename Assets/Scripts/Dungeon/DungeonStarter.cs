@@ -11,6 +11,7 @@ public class DungeonStarter : MonoBehaviour {
 		StartCoroutine(StartDungeon(1));
 		StartCoroutine(Retrigger(10));
 	}
+
 	private IEnumerator StartDungeon(int delay)
 	{
 		yield return new WaitForSeconds(delay);

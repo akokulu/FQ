@@ -318,6 +318,7 @@ public class MobController : MonoBehaviour
 	class AttackingState : BaseMobState
 	{
 		float endTime;
+        float delayTime;
 
 		public AttackingState(GameObject self) : base(self) { }
 
@@ -337,15 +338,21 @@ public class MobController : MonoBehaviour
 				//Player.health -5;
 			
 			//Temp code...
-			endTime = Time.time + 2.0f;
+            delayTime = Time.time + .5f;
+            endTime = delayTime + 2.0f;
 		}
 
 		public override void Update() 
 		{
-            if (!self.animation.IsPlaying("attack"))
+            if (!self.animation.IsPlaying("attack") && Time.time > delayTime)
             {
                 self.animation.CrossFade("attack");
                 self.GetComponent<MobController>().enemyWeapon.GetComponent<BoxCollider>().enabled = true;
+                delayTime = Time.time + 5.0f;
+            }
+            else if (!self.animation.IsPlaying("waitingforbattle") && Time.time <= delayTime)
+            {
+                self.animation.CrossFade("waitingforbattle"); 
             }
 
             self.transform.LookAt(player.transform);

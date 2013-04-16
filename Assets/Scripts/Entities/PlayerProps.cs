@@ -9,6 +9,8 @@ public class PlayerProps : MonoBehaviour
     public static bool isBlocking = false;
     public static bool hasItem = false;
 
+    public static float healthRegen = .2f;
+
     private bool sessionSaved = false;
 
     void Awake()

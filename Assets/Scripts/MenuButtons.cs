@@ -15,8 +15,8 @@ public class MenuButtons : MonoBehaviour
     public GUITexture Return;
 
     public GUITexture Quit;
-    
-    public GUIText Resume;
+
+    public GUITexture Resume;
     
 	public GUIText Name;
 	public GUIText Command;
@@ -56,7 +56,8 @@ public class MenuButtons : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            PlayerStats.playerName = Name.text; // Set player name
+            if (gamestate == GameState.MainMenu)
+                PlayerStats.playerName = Name.text; // Set player name
 
             if (gamestate == GameState.Play)
                 ShowPause();
@@ -141,9 +142,9 @@ public class MenuButtons : MonoBehaviour
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(Screen.width / 4);
-            GUILayout.Label("Name", GUILayout.Width(Screen.width / 8));
-            GUILayout.Label("Kill Count", GUILayout.Width(Screen.width / 8));
-            GUILayout.Label("Lamps Collected", GUILayout.Width(Screen.width / 8));
+            GUILayout.Box("Name", GUILayout.Width(Screen.width / 8));
+            GUILayout.Box("Kill Count", GUILayout.Width(Screen.width / 8));
+            GUILayout.Box("Lamps Collected", GUILayout.Width(Screen.width / 8));
             GUILayout.EndHorizontal();
 
             GUILayout.Space(25);
@@ -152,9 +153,9 @@ public class MenuButtons : MonoBehaviour
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(Screen.width / 4);
-                GUILayout.Label(_score.name, GUILayout.Width(Screen.width / 8));
-                GUILayout.Label("" + _score.killCount, GUILayout.Width(Screen.width / 8));
-                GUILayout.Label("" + _score.lampsCollected, GUILayout.Width(Screen.width / 8));
+                GUILayout.Box(_score.name, GUILayout.Width(Screen.width / 8));
+                GUILayout.Box("" + _score.killCount, GUILayout.Width(Screen.width / 8));
+                GUILayout.Box("" + _score.lampsCollected, GUILayout.Width(Screen.width / 8));
                 GUILayout.EndHorizontal();
             }
         }

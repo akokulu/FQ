@@ -29,6 +29,12 @@ public class EnemyProps : MonoBehaviour
             // Spawn item on death if enemy has item
             Instantiate(itemPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(270, 0, 0));
         }
+
+        // Regen health on kill
+        if (PlayerProps.currentHealth + PlayerProps.currentHealth * PlayerProps.healthRegen >= PlayerProps.maxHealth)  
+            PlayerProps.currentHealth = PlayerProps.maxHealth;   
+        else
+            PlayerProps.currentHealth += PlayerProps.maxHealth * PlayerProps.healthRegen;
     }
 
     void OnTriggerEnter(Collider c)

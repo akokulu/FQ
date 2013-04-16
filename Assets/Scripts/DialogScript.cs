@@ -15,6 +15,8 @@ public class DialogScript : MonoBehaviour {
     public GUIText guiDialog;
 	public GUITexture GUITextBackground;
 
+    public AudioSource mumble;
+
 	void Awake ()
 	{
 		begin = Resources.Load("start") as TextAsset;
@@ -33,16 +35,30 @@ public class DialogScript : MonoBehaviour {
 		//print(begin.text);
 		//print(end.text);
 	}
+
     void OnTriggerEnter(Collider other)
     {
 		if (other.gameObject.name == "Player")
 		{
-			if (!PlayerProps.hasItem)
-        		guiDialog.text = dialogStart;
-			else
-				guiDialog.text = dialogEnd;
+            mumble.Play();
+            mumble.loop = true;
 
-			GUITextBackground.enabled = true;
+            if (!PlayerProps.hasItem)
+                guiDialog.text = dialogStart;
+            else
+                guiDialog.text = dialogEnd;
+
+            GUITextBackground.enabled = true;
+
+            StartCoroutine(ShowDialog(5));
 		}
+    }
+
+    private IEnumerator ShowDialog(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+        guiDialog.text = "";
+        GUITextBackground.enabled = false;
+        mumble.Stop();
     }
 }
