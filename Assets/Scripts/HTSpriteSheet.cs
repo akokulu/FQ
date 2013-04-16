@@ -212,7 +212,7 @@ public class HTSpriteSheet : MonoBehaviour {
 		
 		// We search the main camera
 		mainCamTransform = Camera.main.transform;
-		
+
 		// do we have sound effect ?
 		soundEffect = GetComponent<AudioSource>();
 		
@@ -224,15 +224,10 @@ public class HTSpriteSheet : MonoBehaviour {
 		}
 		
 		renderer.enabled = false;
-		
 
+        InitSpriteSheet();
 	}
-	
-	// Use this for initialization
-	void Start () {
-	
-		InitSpriteSheet();
-	}
+
 	
 	/// <summary>
 	/// Update this instance.
@@ -358,9 +353,9 @@ public class HTSpriteSheet : MonoBehaviour {
 	/// Camera_s the billboarding mode.
 	/// </summary>
 	void Camera_BillboardingMode(){
-		
-		Vector3 lookAtVector =   mainCamTransform.position-myTransform.position ;
-		
+
+		Vector3 lookAtVector =   mainCamTransform.position-myTransform.position;
+
 		switch (billboarding){
 			case CameraFacingMode.BillBoard:
 				myTransform.LookAt(  mainCamTransform.position - lookAtVector); 
